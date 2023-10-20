@@ -8,9 +8,12 @@ namespace NextMovieApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            // Add AWS Lambda support.
+            builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
+
             var app = builder.Build();
             dynamic expando = new ExpandoObject();
-            expando.Name = "Vikram";
+            expando.Name = "Vikram?";
 
             app.MapGet("/nextmovie", () => expando);
 
